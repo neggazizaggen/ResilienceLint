@@ -45,7 +45,7 @@ Create a file named `workload.yaml`:
 workload:
   recovery:
     rto: "4h"
-    rpo: "15m"
+    rpo: "1h"
 ```
 
 - **RTO (Recovery Time Objective):** the target time to restore a service after an incident.
