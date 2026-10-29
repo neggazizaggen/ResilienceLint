@@ -41,5 +41,30 @@ class TestValidateWorkload(unittest.TestCase):
         self.assertIn("RPO is missing", errors[0])
 
 
+    def test_empty_rto(self):
+        workload = {
+            "workload": {
+                "recovery": {
+                    "rto": "",
+                    "rpo": "15m",
+                }
+            }
+        }
+        errors = validate_workload(workload)
+        self.assertEqual(len(errors), 1)
+        self.assertIn("RTO is missing", errors[0])
+
+    def test_whitespace_rpo(self):
+        workload = {
+            "workload": {
+                "recovery": {
+                    "rto": "4h",
+                    "rpo": "   ",
+                }
+            }
+        }
+        errors = validate_workload(workload)
+        self.assertEqual(len(errors), 1)
+        self.assertIn("RPO is missing", errors[0])
 if __name__ == "__main__":
     unittest.main()
