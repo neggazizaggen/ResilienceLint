@@ -58,16 +58,30 @@ The values above are examples only. Actual recovery objectives should be defined
 Run the validator from the repository root:
 
 ```bash
-python src/resiliencelint.py workload.yaml
+python src/resiliencelint.py examples/workload-valid.yaml
 ```
 
-If both values are present, the expected output is:
+Expected output:
 
 ```text
 PASS: RTO and RPO are defined.
 ```
 
-If a required value is missing or empty, the tool reports a validation failure and returns a non-zero exit code.
+### Test a configuration with a missing RPO
+
+Run:
+
+```bash
+python src/resiliencelint.py examples/workload-missing-rpo.yaml
+```
+
+Expected output:
+
+```text
+FAIL: RL-LINUX-001: RPO is missing.
+```
+
+The command returns exit code `1` because the configuration fails validation.
 
 ## Running the tests
 
@@ -101,3 +115,5 @@ Contributions, suggestions, and technical feedback are welcome.
 ## License
 
 Licensed under the Apache License 2.0. See the `LICENSE` file for details.
+
+
