@@ -40,7 +40,6 @@ class TestValidateWorkload(unittest.TestCase):
         self.assertEqual(len(errors), 1)
         self.assertIn("RPO is missing", errors[0])
 
-
     def test_empty_rto(self):
         workload = {
             "workload": {
@@ -66,5 +65,7 @@ class TestValidateWorkload(unittest.TestCase):
         errors = validate_workload(workload)
         self.assertEqual(len(errors), 1)
         self.assertIn("RPO is missing", errors[0])
+
+
 if __name__ == "__main__":
     unittest.main()
