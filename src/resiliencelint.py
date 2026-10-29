@@ -1,6 +1,5 @@
 
 import sys
-from pathlib import Path
 
 import yaml
 
@@ -9,7 +8,18 @@ def validate_workload(workload):
     """Check whether RTO and RPO are defined."""
     errors = []
 
-    recovery = workload.get("workload", {}).get("recovery", {})
+    if not isinstance(workload, dict):
+        return ["RL-LINUX-002: Workload must be a YAML mapping."]
+
+    workload_config = workload.get("workload", {})
+
+    if not isinstance(workload_config, dict):
+        return ["RL-LINUX-002: Workload must be a YAML mapping."]
+
+    recovery = workload_config.get("recovery", {})
+
+    if not isinstance(recovery, dict):
+        return ["RL-LINUX-002: Recovery must be a YAML mapping."]
 
     for field in ("rto", "rpo"):
         value = recovery.get(field)
