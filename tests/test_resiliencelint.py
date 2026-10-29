@@ -65,7 +65,25 @@ class TestValidateWorkload(unittest.TestCase):
         errors = validate_workload(workload)
         self.assertEqual(len(errors), 1)
         self.assertIn("RPO is missing", errors[0])
+    def test_invalid_workload_structure(self):
+        workload = {"workload": "invalid"}
 
+        errors = validate_workload(workload)
+
+        self.assertEqual(len(errors), 1)
+        self.assertIn("Workload must be a YAML mapping", errors[0])
+
+    def test_invalid_recovery_structure(self):
+        workload = {
+            "workload": {
+                "recovery": "invalid",
+            }
+        }
+
+        errors = validate_workload(workload)
+
+        self.assertEqual(len(errors), 1)
+        self.assertIn("Recovery must be a YAML mapping", errors[0])
 
 if __name__ == "__main__":
     unittest.main()
