@@ -1,0 +1,4 @@
+workload:
+  recovery:
+    rto: "4h"
+    rpo: "1h"
