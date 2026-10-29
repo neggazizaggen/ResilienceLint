@@ -1,0 +1,26 @@
+
+id: RL-LINUX-001
+name: rto-rpo-defined
+title: Recovery objectives must be documented
+description: >
+  Checks whether Recovery Time Objective (RTO) and Recovery Point
+  Objective (RPO) are explicitly defined for a workload.
+category: disaster-recovery
+severity: high
+
+checks:
+  - field: rto
+    requirement: must_be_defined
+  - field: rpo
+    requirement: must_be_defined
+
+failure_message: >
+  RTO or RPO is missing. Recovery objectives cannot be validated.
+
+remediation: >
+  Document the maximum acceptable recovery time (RTO) and data loss
+  window (RPO), and obtain approval from the service owner.
+
+safety:
+  read_only: true
+  modifies_system: false
