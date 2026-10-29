@@ -1,0 +1,8 @@
+
+workload:
+  name: example-linux-server
+  environment: test
+
+  recovery:
+    rto: "4h"
+    rpo: "15m"
